@@ -1,13 +1,39 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+$color-0f53fb: #0F53FB;
+$color-80868b: #80868B;
+$color-0A1A3F: #0A1A3F;
+
+/* Font/text values */
+$font-family-google-sans: Google Sans;
+$font-style-normal: normal;
+$font-weight-normal: normal;
+$font-size-20: 20px;
+$font-size-24: 24px;
+$line-height-6: 6px;
+$character-spacing-0-2: 0.2px;
+$line-spacing-30: 30px;
+
+*{
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.header{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 10px 20px #CDCDCD29;
+opacity: 1;
+height: 100px;
+width: 100vw;
+.title{
+  font: $font-style-normal normal $font-weight-normal 24px/6px Stem-Medium;
+text-align: left;
+letter-spacing: 0.48px;
+color: $color-0A1A3F;
+text-transform: capitalize;
+opacity: 1;
+padding-top: 40px;
+padding-left: 116px;
+}
 }
