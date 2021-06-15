@@ -25,6 +25,9 @@ $line-spacing-30: 30px;
   padding: 0;
 }
 
+.rendered-form{
+  width: 40vw;
+}
 .header{
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 10px 20px #CDCDCD29;
@@ -69,9 +72,61 @@ $line-spacing-30: 30px;
       margin-top:6vh;
       column-gap: 1.2em;
     }
+    .checkbox-row{
+      justify-content: center;
+      margin-top: 8vh;
+      font: $font-style-normal normal normal 14px/18px $font-family-google-sans;
+    letter-spacing: -0.16px;
+    color: #0D132D;
+
+    }
   }
 }
 
+.otp-input{
+  width: 100%;
+  input[type="text"]{
+  //   padding-left: 10%;
+  letter-spacing: 1em;
+  // margin-right:-1.3em;
+   border: 0;
+   border-bottom: 2px solid #E9E9E9;
+
+  width:30vw;
+  font: $font-style-normal normal bold 60px/60px $font-family-google-sans;
+  text-align: center;
+  }
+  input:focus{
+    outline: none;
+  }
+}
+.check-input{
+  width: 100%;
+  margin-top: -5vh;
+  label{
+    height: 50px;
+  
+  padding: 1em;
+  border: 1px solid #ccc;
+  background: #F8F8F8 ;
+  border-radius: 3px;
+  width: 100%;
+  font: $font-style-normal normal normal 12px/16px $font-family-google-sans;
+  display: inline-block;
+  #whatsapp{
+    color:  #40C351;
+    font: normal normal 600 12px/16px $font-family-google-sans;
+letter-spacing: -0.14px;
+background-image: url('./components/whatsapp-symbol.svg');
+background-repeat: no-repeat;
+padding-left: 22px;
+position: absolute;
+width: auto;
+height: 18px;
+margin-left:5px;
+  }
+  }
+}
 .form-input{
   width: 100%;
   input[type="text"],input[type="email"],select{
@@ -87,6 +142,10 @@ $line-spacing-30: 30px;
   font: $font-style-normal normal bold 15px/24px $font-family-google-sans;
   color: $color-010A10;
   }
+  input[type="text"]:focus,input[type="email"]:focus,select:focus{
+    border: 1px solid $color-0f53fb;
+
+  } 
   label{
       background-color: #FFFFFF;
       display: block;
@@ -100,13 +159,20 @@ $line-spacing-30: 30px;
     content: attr(placeholder);
     margin: 0 1em;
     padding: 0 4px;
-    font: $font-style-normal normal $font-weight-normal 13px/18px $font-family-google-sans;
+    font: $font-style-normal normal $font-weight-normal 12px/16px $font-family-google-sans;
     color: $color-0D132D;
     background-image: linear-gradient(to bottom, #fff, #fff);
 
   }
+  label:before:focus{
+    color: $color-0f53fb;
+  }
+  
 }
 
+input[type="text"]:focus + label[placeholder]:before {
+  color: $color-0f53fb;
+}
 .bid-amount{
   width: 100%;
   display: flex;
@@ -151,7 +217,83 @@ $line-spacing-30: 30px;
   background: $color-0f53fb 0% 0% no-repeat padding-box;
   outline: none;
   border: none;
-  font: $font-style-normal normal medium 15px/25px $font-family-google-sans;
+  font: $font-style-normal normal normal 15px/25px $font-family-google-sans;
 letter-spacing: 0px;
 color: #FFFFFF;
+cursor: pointer;
+&:disabled{
+  background: #EDF0F7 0% 0% no-repeat padding-box;
+  cursor:not-allowed;
+}
+}
+
+.journeyCard,.bidCard{
+  width: 100%;
+  border-bottom: 1px solid #d4d1d1;
+  padding-bottom: 5%;
+  .main{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .price{
+      font: $font-style-normal normal bold 25px/30px Gilroy;
+letter-spacing: -0.35px;
+color: #202124;
+opacity: 1;
+.fix-price{
+  font: $font-style-normal normal $font-weight-normal 12px/15px $font-family-google-sans;
+  color: $color-80868b;
+  
+  letter-spacing: -0.18px;
+  color: #80868B;
+  opacity: 0.9;
+}
+    }
+
+  }
+  .top{
+    display: flex;
+    justify-content: space-between;
+  }
+  .title{
+    font: $font-style-normal normal 600 10px/12px $font-family-google-sans;
+letter-spacing: 0px;
+color: #010A10;
+opacity: 0.4;
+width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .content{
+    font: $font-style-normal normal 600 14px/16px $font-family-google-sans;
+line-height: 1.8em;
+letter-spacing: 0px;
+color: #010A10;
+opacity: 1;
+  }
+  
+}
+
+.otp-content{
+  font: $font-style-normal normal $font-weight-normal 14px/20px $font-family-google-sans;
+letter-spacing: -0.4px;
+color: #010A10;
+opacity: 0.8;
+}
+.edit{
+  font: $font-style-normal normal bold 12px/14px $font-family-google-sans;
+color: $color-0f53fb;
+letter-spacing: -0.4px;
+color: #0F53FB;
+opacity: 1;
+cursor: pointer;
+outline: none;
+border: 0;
+background-color: #fff;
+margin-left:10px
+}
+.resendOTP{
+  width: 100%;
+  text-align: center;
+  text-decoration: underline;
 }

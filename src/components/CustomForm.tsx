@@ -2,22 +2,25 @@ import React,{useState} from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { ImportsNotUsedAsValues } from 'typescript';
+import Step1 from "./steps/Step1"
+import Step2 from "./steps/Step2"
+import Step3 from "./steps/Step3"
+import Step4 from "./steps/Step4"
+import FormValues from "../interfaces/JourneyInterface"
 
-interface FormValues{
-  source :string,
-  destination:string,
-  carType:string,
-  numberOfTravellers:number,
-  bidAmount:number,
-  negotiable:boolean,
-  mobile:string,
-  name :string,
-  remarks?:string,
-  otp:string 
-}
 
 function CustomForm() {
     const [step,setStep] = useState(1)
+    const next = () => {
+      // update state.step by adding to previous state
+      setStep(s=>s+1)
+    }
+    
+    // process to previous step
+    const editJourney = () => {
+      // update state.step by minus 1 from previous state
+      setStep(1)
+    }
   return (
     <div className="form">
       <div className="form-bar">
@@ -35,6 +38,7 @@ function CustomForm() {
         bidAmount:0,
         negotiable:false,
         mobile:'',
+        getUpdates:false,
         name :'',
         remarks:'',
         otp: ''
@@ -52,6 +56,7 @@ function CustomForm() {
          }),
          bidAmount:Yup.number().required('Required').min(1, `Minimum bid amount should be 1`),
          negotiable : Yup.boolean(),
+         getUpdates : Yup.boolean(),
          mobile:Yup.string().required('Required')
          .matches(/^[1-9]\d{0,9}$/,'Number should have max 10 digits'),
          name:Yup.string().required('Required'),
@@ -64,60 +69,14 @@ function CustomForm() {
            setSubmitting(false);
          }, 400);
        }}
-     >{({
-      setFieldValue,
-      setFieldTouched,
-      values,
-      errors,
-      touched,
-    }) => (
+     >{({ values, errors, touched, handleChange,handleSubmit, handleBlur}) => (
        <Form className="rendered-form">
-         <div className="row">
-            <div className="form-input">
-              <Field name="source" type="text" />
-              <label htmlFor="source" placeholder="Source Location *"></label>
-              <span className="error"><ErrorMessage   name="source" /></span>
-              
-            </div>
-         <div className="form-input">
-              <Field name="destination" type="text" />
-              <label htmlFor="destination" placeholder="Destination *"></label>
-              <span className="error"><ErrorMessage   name="destination" /></span>
-            
-         </div>
-         </div>
-         <div className="row">
-         <div className="form-input">
-         
-            <Field name="carType" as="select">
-              <option value="HatchBack">HatchBack</option>
-              <option value="Sedan">Sedan</option>
-              <option value="SUV">SUV</option>
-              </Field>
-            <label htmlFor="carType" placeholder="Enter Car Type *"></label>
-            <span className="error"><ErrorMessage   name="carType" /></span>
-          </div>
-         </div>
-         <div className="row">
-         <div className="form-input">
-         
-         <Field name="numberOfTravellers" type="text" />
-         <label htmlFor="numberOfTravellers" placeholder="Number of Travellers"></label>
-         <span className="error"><ErrorMessage   name="numberOfTravellers" /></span>
-          </div>
-         </div>
-         
-         <div className="row">
-         <div className="bid-amount">
-           <div>
-            <label htmlFor="bidAmount" placeholder="₹">₹</label>
-            <span><Field name="bidAmount" type="text" size={values.bidAmount.toString().length===0?1:values.bidAmount.toString().length} /></span>
-           </div>
+         {renderStep(step, values, errors, touched, handleChange, handleSubmit, next, editJourney,handleBlur,setStep)}
          
          
-         <span className="error"><ErrorMessage   name="bidAmount" /></span>
-          </div>
-         </div>
+         
+
+         
 
          <div className="row">
          <button type="button" className="next-button">Submit</button>
@@ -134,5 +93,53 @@ function CustomForm() {
     </div>
   );
 }
+
+const renderStep = (step:number, values:FormValues, errors:any, touched:any, handleChange:Function, handleSubmit:Function, next:Function, editJourney:Function, handleBlur:Function,setStep:Function) => {
+  switch (step) {
+    case 1:
+        return (
+            <Step1 
+            values={values}
+            errors={errors} 
+            touched={touched}
+            handleChange={handleChange}
+            next={next} 
+            handleBlur = {handleBlur}
+            />);
+    case 2:
+        
+          return (
+            <Step2 
+            values={values}
+            errors={errors} 
+            touched={touched}
+            handleChange={handleChange}
+            next={next} 
+            handleBlur = {handleBlur}
+            setStep = {setStep}
+            />);
+    case 3:
+      return (
+        <Step3 
+        values={values}
+        errors={errors} 
+        touched={touched}
+        handleChange={handleChange}
+        next={next} 
+        handleBlur = {handleBlur}
+        setStep = {setStep}
+        />);
+    default:
+      return (
+        <Step4 
+        values={values}
+        errors={errors} 
+        touched={touched}
+        handleChange={handleChange}
+        next={next} 
+        handleBlur = {handleBlur}
+        />);
+  }
+};
 
 export default CustomForm;
