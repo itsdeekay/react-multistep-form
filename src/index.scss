@@ -67,6 +67,7 @@ $line-spacing-30: 30px;
     align-items: center;
     justify-content: center;
     height: 100%;
+    margin-bottom: 5%;
     .row{
       display:flex;
       margin-top:6vh;
@@ -299,4 +300,64 @@ margin-left:10px
   width: 100%;
   text-align: center;
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 700px) {
+  .rendered-form{
+    width: 80vw;
+  }
+  
+.form{
+  .form-bar{
+    height: 18vh;
+    background: $color-08123B 0% 0% no-repeat padding-box;
+    .form-bar-text{
+      font: $font-style-normal normal $font-weight-bold 20px/25px $font-family-google-sans;
+    }
+  }
+}
+
+
+.otp-input{
+  input[type="text"]{
+
+  width:67vw;
+  font: $font-style-normal normal bold 50px/50px $font-family-google-sans;
+  text-align: center;
+  }
+  input:focus{
+    outline: none;
+  }
+}
+}
+
+@media only screen and (max-width: 400px) {
+  .rendered-form{
+    width: 90vw;
+  }
+
+  
+.form{
+  .form-bar{
+    height: 18vh;
+    background: $color-08123B 0% 0% no-repeat padding-box;
+    .form-bar-text{
+      font: $font-style-normal normal $font-weight-bold 20px/25px $font-family-google-sans;
+    }
+  }
+}
+
+
+.otp-input{
+  input[type="text"]{
+
+  width:70vw;
+  font: $font-style-normal normal bold 40px/50px $font-family-google-sans;
+  text-align: center;
+  }
+  input:focus{
+    outline: none;
+  }
+}
+
 }
