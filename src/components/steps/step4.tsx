@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
 import JourneyDetail from '../../components/JourneyDetail'
 import BidDetail from '../../components/BidDetails'
+import {Step4Props} from '../../utils/utils'
 
-const Step4 = (props:any) =>{
-  const { values,setStep, handleChange, handleSubmit, next,errors, touched, handleBlur} = props
-    // const nameHasError = errors.name && touched.name
-    // const phoneHasError = errors.phone && touched.phone
+const Step4 = (props:Step4Props) =>{
+  const { values,setStep} = props
+  
   return(
         <>
         <div className="row">
@@ -14,6 +14,10 @@ const Step4 = (props:any) =>{
         <div className="row">
         <BidDetail values = {values} setStep = {setStep} />
         </div>
+        <div className="row">
+         <button type="button" className="next-button">Submit</button>
+         </div>
+         
         </>
   )
 }

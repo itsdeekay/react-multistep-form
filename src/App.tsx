@@ -1,4 +1,3 @@
-import React from 'react';
 import CustomForm from './components/CustomForm';
 import Header from './components/Header';
 

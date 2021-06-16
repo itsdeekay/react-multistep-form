@@ -221,9 +221,12 @@ input[type="text"]:focus + label[placeholder]:before {
 letter-spacing: 0px;
 color: #FFFFFF;
 cursor: pointer;
+opacity: 1;
 &:disabled{
   background: #EDF0F7 0% 0% no-repeat padding-box;
   cursor:not-allowed;
+  color: #8dabf8;
+  opacity: 1;
 }
 }
 

@@ -1,9 +1,11 @@
 import React,{useState} from 'react';
 import {  Field, ErrorMessage } from 'formik';
 import JourneyDetail from '../../components/JourneyDetail'
-const Step2 = (props:any) =>{
-     const { values,setStep, handleChange, handleSubmit, next,errors, touched, handleBlur} = props
-     const hasErrors = errors.bidAmount || errors.mobile || errors.name || errors.remarks
+import {Step2Props} from '../../utils/utils'
+
+const Step2 = (props:Step2Props) =>{
+     const { values,setStep,  next,errors, touched} = props
+     const hasErrors = !!errors.bidAmount || !!errors.mobile || !!errors.name || !!errors.remarks
      const hasTouched = touched.bidAmount && touched.mobile || touched.name 
      const [isBid,setIsBid] = useState(touched.mobile)
   return(
@@ -33,7 +35,7 @@ const Step2 = (props:any) =>{
         {
           !isBid && (
             <div className="row">
-            <button disabled={errors.bidAmount|| !touched.bidAmount} type="button" onClick={()=>setIsBid(true)} className="next-button">Next</button>
+            <button disabled={!!errors.bidAmount|| !touched.bidAmount} type="button" onClick={()=>setIsBid(true)} className="next-button">Next</button>
             </div>
           )
         }
@@ -78,7 +80,7 @@ const Step2 = (props:any) =>{
               </div>
            </div>
            <div className="row">
-         <button disabled={hasErrors|| !hasTouched} type="button" onClick={next} className="next-button">Verify via OTP</button>
+         <button disabled={hasErrors|| !hasTouched} type="button" onClick={()=>next()} className="next-button">Verify via OTP</button>
          </div>
            </>
         ) }

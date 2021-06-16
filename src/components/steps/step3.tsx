@@ -2,9 +2,10 @@ import React,{ChangeEvent, useState} from 'react';
 import { Field, ErrorMessage } from 'formik';
 import JourneyDetail from '../../components/JourneyDetail'
 import BidDetail from '../../components/BidDetails'
-const Step3 = (props:any) =>{
-     const { values,setStep, handleChange, handleSubmit, next,errors, touched, handleBlur} = props
-     const hasErrors = errors.otp 
+import {Step3Props} from '../../utils/utils'
+const Step3 = (props:Step3Props) =>{
+     const { values,setStep, handleChange, next,errors, touched} = props
+     const hasErrors = !!errors.otp 
      const hasTouched = touched.otp 
 
     const otpChange = (e:React.FormEvent<HTMLInputElement>) =>{

@@ -1,13 +1,11 @@
 import React,{useState} from 'react';
 import { Field, ErrorMessage } from 'formik';
+import {Step1Props} from '../../utils/utils'
 
-
-const Step1 = ( props:any) =>{
-    const { values, handleChange, handleSubmit, next,errors, touched, handleBlur} = props
-    // const nameHasError = errors.name && touched.name
-    // const phoneHasError = errors.phone && touched.phone
-    const hasErrors = errors.source || errors.destination || errors.carType || errors.numberOfTravellers
-    const hasTouched = touched.source && touched.destination 
+const Step1 = ( props:Step1Props) =>{
+    const { next,errors, touched} = props
+    const hasErrors = (!touched.source || !!errors.source  ) || (!touched.destination || !!errors.destination ) || (!touched.carType || !!errors.carType) || !!errors.numberOfTravellers
+    //const hasTouched = touched.source && touched.destination 
   return(
         <>
         <div className="row">
@@ -46,7 +44,7 @@ const Step1 = ( props:any) =>{
           </div>
          </div>
          <div className="row">
-         <button disabled={hasErrors|| !hasTouched} type="button" onClick={next} className="next-button">Enter Bid Details</button>
+         <button disabled={hasErrors} type="button" onClick={()=>next()} className="next-button">Enter Bid Details</button>
          </div>
         </>
   )
